@@ -10,18 +10,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.shablon.ui.theme.ShablonTheme
+import com.example.shablon.ui.theme.*
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -30,27 +28,37 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         setContent {
-            Greeting()
+            MainWindow()
         }
     }
 }
 
 @Composable
-fun Greeting() {
+fun MainWindow() {
     val state = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     var window by remember { mutableStateOf(0) }
+    fun close() = scope.launch { state.drawerState.close() }
+
     ShablonTheme {
         Scaffold(
             scaffoldState = state,
             topBar = {
                 TopAppBar() {
+
                     IconButton({
                         scope.launch {
                             state.drawerState.open()
                         }
                     }) {
                         Icon(Icons.Default.Menu, "")
+                    }
+
+                    Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth(0.9f)) {
+                        if(window == 0) Text("Темы уроков", fontSize = 24.sp, fontWeight = FontWeight.W600)
+                        else if (window == 1) Text("Статистика", fontSize = 24.sp, fontWeight = FontWeight.W600)
+                        else if (window == 2) Text("Настройки", fontSize = 24.sp, fontWeight = FontWeight.W600)
+                        else if (window == 3) Text("О приложении", fontSize = 24.sp, fontWeight = FontWeight.W600)
                     }
                 }
             },
@@ -69,7 +77,10 @@ fun Greeting() {
 
                     Divider()
 
-                    DropdownMenuItem({window = 1}) {
+                    DropdownMenuItem({
+                        window = 0
+                        close()
+                    }) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(text = "Темы уроков ")
                             Spacer(modifier = Modifier.weight(1f))
@@ -78,16 +89,22 @@ fun Greeting() {
                     }
                     Divider()
 
-                    DropdownMenuItem({window = 2}) {
+                    DropdownMenuItem({
+                        window = 1
+                        close()
+                    }) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(text = "Статистика ")
                             Spacer(modifier = Modifier.weight(1f))
-                            Icon(Icons.Default.Search, "")
+                            Icon(Icons.Default.DateRange, "")
                         }
                     }
                     Divider()
 
-                    DropdownMenuItem({window = 3}) {
+                    DropdownMenuItem({
+                        window = 2
+                        close()
+                    }) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(text = "Настройка ")
                             Spacer(modifier = Modifier.weight(1f))
@@ -99,7 +116,10 @@ fun Greeting() {
                     Spacer(modifier = Modifier.weight(1f))
 
                     Divider()
-                    DropdownMenuItem({window = 4}) {
+                    DropdownMenuItem({
+                        window = 3
+                        close()
+                    }) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(text = "О приложении ")
                             Spacer(modifier = Modifier.weight(1f))
@@ -109,6 +129,15 @@ fun Greeting() {
                 }
             }
         ) {
+            if(window == 0) LessonTopics()
+            else if (window == 1) Statistics()
+            else if (window == 2) Settings()
+            else if (window == 3) AboutApplication()
+            else Column(Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center){
+                Text(text = "ERROR", fontSize = 54.sp)
+            }
         }
     }
 }
