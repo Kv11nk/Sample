@@ -3,6 +3,7 @@ package com.example.shablon
 import android.graphics.drawable.shapes.Shape
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -54,7 +55,11 @@ fun MainWindow() {
                         Icon(Icons.Default.Menu, "")
                     }
 
-                    Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth(0.9f)) {
+                    Row(
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth(0.9f)
+                    ) {
                         if(window == 0) Text("Темы уроков", fontSize = 24.sp, fontWeight = FontWeight.W600)
                         else if (window == 1) Text("Статистика", fontSize = 24.sp, fontWeight = FontWeight.W600)
                         else if (window == 2) Text("Настройки", fontSize = 24.sp, fontWeight = FontWeight.W600)
@@ -65,7 +70,8 @@ fun MainWindow() {
             drawerContent = {
                 Column {
 
-                    Row(verticalAlignment = Alignment.CenterVertically,
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center,
                         modifier = Modifier
                             .background(color = MaterialTheme.colors.background)
@@ -139,5 +145,8 @@ fun MainWindow() {
                 Text(text = "ERROR", fontSize = 54.sp)
             }
         }
+    }
+    BackHandler(window != 0){
+        window = 0
     }
 }
