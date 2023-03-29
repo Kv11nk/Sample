@@ -23,112 +23,13 @@ import com.example.shablon.R
 fun Acquaintance(){
     LazyColumn(Modifier.fillMaxSize()){
         item {
-            Card(
-                Modifier
-                    .padding(10.dp)
-                    .clip(shape = RoundedCornerShape(16.dp))
-                    .fillMaxWidth()
-                    .clickable {}
-            )
-            {
-                Image(
-                    painter = painterResource(R.drawable.les2),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clip(shape = RoundedCornerShape(16.dp)),
-                    contentScale = ContentScale.Crop
-                )
-
-                Column(
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                {
-                    Spacer(modifier = Modifier.weight(1f))
-
-                    Text(
-                        text = "Знакомство с Python",
-                        Modifier.padding(10.dp),
-                        fontSize = 28.sp,
-                        textAlign = TextAlign.Center,
-                        color = Color.White
-                    )
-                }
-            }
+            ItemLessons(TitleLess(0))
         }
         item {
-            Card(
-                Modifier
-                    .padding(10.dp)
-                    .clip(shape = RoundedCornerShape(16.dp))
-                    .fillMaxWidth()
-                    .clickable {}
-            )
-            {
-                Image(
-                    painter = painterResource(R.drawable.les2),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clip(shape = RoundedCornerShape(16.dp)),
-                    contentScale = ContentScale.Crop
-                )
-
-                Column(
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                {
-                    Spacer(modifier = Modifier.weight(1f))
-
-                    Text(
-                        text = "Знакомство с Python",
-                        Modifier.padding(10.dp),
-                        fontSize = 28.sp,
-                        textAlign = TextAlign.Center,
-                        color = Color.White
-                    )
-                }
-            }
+            ItemLessons(TitleLess(1))
         }
         item {
-            Card(
-                Modifier
-                    .padding(10.dp)
-                    .clip(shape = RoundedCornerShape(16.dp))
-                    .fillMaxWidth()
-                    .clickable {}
-            )
-            {
-                Image(
-                    painter = painterResource(R.drawable.les2),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clip(shape = RoundedCornerShape(16.dp)),
-                    contentScale = ContentScale.Crop
-                )
-
-                Column(
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                {
-                    Spacer(modifier = Modifier.weight(1f))
-
-                    Text(
-                        text = "Знакомство с Python",
-                        Modifier.padding(10.dp),
-                        fontSize = 28.sp,
-                        textAlign = TextAlign.Center,
-                        color = Color.White
-                    )
-                }
-            }
+            ItemLessons(TitleLess(2))
         }
     }
 }

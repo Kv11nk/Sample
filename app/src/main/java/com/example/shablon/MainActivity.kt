@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.shablon.ui.theme.*
+import com.example.shablon.window.lesson.TEST
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -136,7 +137,7 @@ fun MainWindow() {
             }
         ) {
             if(window == 0) LessonTopics()
-            else if (window == 1) Statistics()
+            else if (window == 1) TEST() //Statistics()
             else if (window == 2) Settings()
             else if (window == 3) AboutApplication()
             else Column(Modifier.fillMaxSize(),
